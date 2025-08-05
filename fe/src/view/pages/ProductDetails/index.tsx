@@ -5,13 +5,8 @@ import { Button } from "../../components/Button";
 import { formatCurrency } from "../../../app/utils/formatCurrency";
 
 export function ProductDetails() {
-  const { 
-    product, 
-    isFetching, 
-    error, 
-    handleAddToCart, 
-    isLoadingAddToCart 
-  } = useProductDetailsController();
+  const { product, isFetching, error, handleAddToCart, isLoadingAddToCart } =
+    useProductDetailsController();
   const navigate = useNavigate();
 
   if (isFetching) {
@@ -26,11 +21,13 @@ export function ProductDetails() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Produto não encontrado</h2>
-          <p className="text-gray-600 mb-6">O produto que você está procurando não existe ou foi removido.</p>
-          <Button onClick={() => navigate("/")}>
-            Voltar para a loja
-          </Button>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Produto não encontrado
+          </h2>
+          <p className="text-gray-600 mb-6">
+            O produto que você está procurando não existe ou foi removido.
+          </p>
+          <Button onClick={() => navigate("/")}>Voltar para a loja</Button>
         </div>
       </div>
     );
@@ -46,10 +43,11 @@ export function ProductDetails() {
               onClick={() => window.history.back()}
               className="flex items-center text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
             >
-              <ArrowLeft className="h-5 w-5 mr-2" />
-              Voltar
+              <ArrowLeft className="h-5 w-5  mr-2 " />
             </button>
-            <h1 className="md:text-lg text-sm font-semibold text-gray-900">Detalhes do Produto</h1>
+            <h1 className="text-lg    font-semibold text-gray-900">
+              Detalhes do Produto
+            </h1>
             <div className="w-20"></div>
           </div>
         </div>
@@ -82,7 +80,9 @@ export function ProductDetails() {
                       <Star
                         key={i}
                         className={`h-5 w-5 ${
-                          i < 4 ? "text-yellow-400 fill-current" : "text-gray-300"
+                          i < 4
+                            ? "text-yellow-400 fill-current"
+                            : "text-gray-300"
                         }`}
                       />
                     ))}
@@ -122,7 +122,9 @@ export function ProductDetails() {
                   className="w-full flex items-center justify-center"
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
-                  {isLoadingAddToCart ? "Adicionando..." : "Adicionar ao Carrinho"}
+                  {isLoadingAddToCart
+                    ? "Adicionando..."
+                    : "Adicionar ao Carrinho"}
                 </Button>
               </div>
 
@@ -134,7 +136,9 @@ export function ProductDetails() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                    <span className="text-sm text-gray-600">Entrega rápida</span>
+                    <span className="text-sm text-gray-600">
+                      Entrega rápida
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
@@ -142,11 +146,15 @@ export function ProductDetails() {
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                    <span className="text-sm text-gray-600">Devolução grátis</span>
+                    <span className="text-sm text-gray-600">
+                      Devolução grátis
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                    <span className="text-sm text-gray-600">Pagamento seguro</span>
+                    <span className="text-sm text-gray-600">
+                      Pagamento seguro
+                    </span>
                   </div>
                 </div>
               </div>

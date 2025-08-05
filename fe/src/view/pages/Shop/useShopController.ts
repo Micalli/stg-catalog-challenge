@@ -5,17 +5,16 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../app/contexts/hooks/useAuth";
 import { AddParams } from "../../../app/service/cartService/add";
-import { productService } from "../../../app/service/productsService";
-import { Product } from "../../../app/entities/Product";
 import { Categories } from "../../../app/types/Categories.type";
 
 export function useShopController() {
   const queryClient = useQueryClient();
-
-  const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
   const [filterCategory, setFilterCategory] = useState<Categories | null>(null);
   const [page, setPage] = useState<number>(1);
-  const { products, isFetching, maxProductPrice } = useProduct(filterCategory);
+  const { products, isFetching, maxProductPrice, pagination } =
+    useProduct(filterCategory,page);
+
+  const [loadingProductId, setLoadingProductId] = useState<string | null>(null);
 
   const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({
     min: 0,
@@ -36,6 +35,13 @@ export function useShopController() {
     }
   }, [filterCategory]);
 
+  function handlePageChange(newPage: number) {
+    setPage(newPage);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // faz a transição suave
+    });
+  }
   async function handleAddToCart(productId: string) {
     try {
       setLoadingProductId(productId);
@@ -74,5 +80,7 @@ export function useShopController() {
     maxProductPrice,
     minProductPrice: 0,
     user,
+    pagination,
+    handlePageChange,
   };
 }

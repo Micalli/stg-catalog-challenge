@@ -48,6 +48,8 @@ export function useCartController() {
     });
   const handleCheckout = async () => {
     await resetCart();
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+
   };
 
   const handleRemoveItem = async (cartItemId: string) => {

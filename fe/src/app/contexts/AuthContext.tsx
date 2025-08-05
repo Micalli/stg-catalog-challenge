@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { localStorageKeys } from "../config/localStorageKeys";
 import { User } from "../entities/User";
@@ -20,7 +20,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return !!storeAccessToken;
   });
 
-  const { isError, isFetching, isSuccess, data } = useQuery({
+  const { isFetching, isSuccess, data } = useQuery({
     queryKey: ["users", "me"],
     queryFn: () => userService.me(),
     enabled: singnedIn,
@@ -37,13 +37,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setSingnedIn(false);
   }, []);
 
-  useEffect(() => {
-    if (isError) {
-      console.log("🚀 ~ AuthProvider ~ isError:", isError);
-      // toast.error("Sua sessão expirou!");
-      singnout();
-    }
-  }, [isError, singnout]);
 
   const contextValue = {
     singnedIn: isSuccess && singnedIn,

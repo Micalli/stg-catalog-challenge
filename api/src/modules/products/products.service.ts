@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductsRepository } from 'src/shared/database/repositories/products.repository';
-import { Decimal } from 'generated/prisma/runtime/library';
 
 @Injectable()
 export class ProductsService {
@@ -210,18 +209,35 @@ export class ProductsService {
       ],
     });
   }
-  async findMany(category?: string) {
-    const products = await this.productsRepository.findMany({
-      where: {
-        category,
-      },
-    });
+  async findMany(page: number, limit: number, category?: string) {
+    const skip = (page - 1) * limit;
+    const take = limit;
+
+    const [items, total] = await Promise.all([
+      this.productsRepository.findMany({
+        skip,
+        take,
+        where: {
+          category,
+        },
+      }),
+      this.productsRepository.count({}), // total de produtos
+    ]);
+
     const maxProductPrice = Math.max(
-      ...products.map((p) => Number(p.price)),
+      ...items.map((p) => Number(p.price)),
       1000,
     );
 
-    return { products, maxProductPrice };
+    return {
+      products: items,
+      maxProductPrice,
+      pagination: {
+        total,
+        page,
+        lastPage: Math.ceil(total / limit),
+      },
+    };
   }
 
   async findByCategory(category: string) {

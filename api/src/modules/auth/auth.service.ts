@@ -1,7 +1,7 @@
 import {
   BadGatewayException,
+  ForbiddenException,
   Injectable,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
@@ -21,7 +21,7 @@ export class AuthService {
     });
 
     if (!data || error) {
-      throw new UnauthorizedException('Credenciais inválida.');
+      throw new ForbiddenException('Credenciais inválida.');
     }
 
     const accessToken = await this.generateAccessToken(

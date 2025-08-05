@@ -10,6 +10,7 @@ import { motion, Variants } from "framer-motion";
 import { Select } from "../../components/Select";
 import { Categories } from "../../../app/types/Categories.type";
 import { normalizeText } from "../../../app/utils/normalizeText";
+import { Pagination } from "../../components/Pagination";
 
 export function Shop() {
   const {
@@ -21,12 +22,14 @@ export function Shop() {
     handlePriceRangeChange,
     maxProductPrice,
     minProductPrice,
-    user
+    user,
+    pagination,
+    handlePageChange,
   } = useShopController();
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredByName= products.filter((product) =>
+  const filteredByName = products.filter((product) =>
     normalizeText(product?.name ?? "").includes(normalizeText(searchTerm))
   );
 
@@ -151,8 +154,8 @@ export function Shop() {
             ) : (
               <motion.div
                 className="text-center py-12 col-span-full"
-                // initial={{ opacity: 0 }}
-                // animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
                 <p className="text-gray-500 text-lg">
                   Nenhum produto encontrado.
@@ -160,6 +163,15 @@ export function Shop() {
               </motion.div>
             )}
           </motion.div>
+        )}
+
+        {/* Pagination */}
+        {filteredByName.length > 0 && (
+          <Pagination
+            page={pagination.page}
+            lastPage={pagination.lastPage}
+            onPageChange={(newPage) => handlePageChange(newPage)}
+          />
         )}
 
         {isLoading && (

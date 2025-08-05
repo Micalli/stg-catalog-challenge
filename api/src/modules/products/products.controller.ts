@@ -12,8 +12,12 @@ export class ProductsController {
   }
 
   @Get()
-  findMany(@Query('category') category: string) {
-    return this.productsService.findMany(category);
+  findMany(
+    @Query('category') category: string,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 9,
+  ) {
+    return this.productsService.findMany(page, limit, category);
   }
 
   @Get('category/:category')

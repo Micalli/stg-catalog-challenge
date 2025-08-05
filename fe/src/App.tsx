@@ -1,4 +1,4 @@
-import { Toaster } from "react-hot-toast";
+import  { Toaster } from "react-hot-toast";
 import { Router } from "./router";
 import "./index.css";
 import { AuthProvider } from "./app/contexts/AuthContext";
@@ -15,6 +15,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+   
 
   return (
     <QueryClientProvider client={queryClient}>

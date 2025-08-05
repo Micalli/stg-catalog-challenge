@@ -34,7 +34,7 @@ export function Select({
       <div className="relative">
         <label
           className={cn(
-            "absolute z-10  top-1/2 -translate-y-1/2 left-3 text-gray-700 pointer-events-none text-sm",
+            "absolute z-10  top-1/2 -translate-y-3 left-5 text-gray-700 pointer-events-none text-sm",
             selectedValue &&
               " text-xs left-[19px] top-2 transition-all translate-y-0"
           )}
