@@ -43,11 +43,11 @@ export class AuthService {
         },
       },
     });
+    console.log('🚀 ~ AuthService ~ singup ~ error:', error);
 
     if (!data || error) {
       throw new BadGatewayException('Não foi possível criar o usuário.');
     }
-    console.log('🚀 ~ AuthService ~ singup ~ data:', data);
 
     const accessToken = await this.generateAccessToken(
       data.user.id,
@@ -56,6 +56,11 @@ export class AuthService {
 
     return { accessToken };
   }
+
+  async singout() {
+    return await supabase.auth.signOut();
+  }
+
   private async generateAccessToken(userId: string, email: string) {
     return await this.jwtService.signAsync({ sub: userId, email });
   }

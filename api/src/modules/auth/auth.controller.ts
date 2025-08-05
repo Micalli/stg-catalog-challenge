@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SinginDto } from './dto/signIn.dto';
 import { IsPublic } from 'src/shared/decorators/isPublic';
@@ -9,18 +9,18 @@ import { SingupDto } from './dto/signUp.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('singin')
+  @Post('/singin')
   authenticate(@Body() singinDto: SinginDto) {
     return this.authService.singin(singinDto);
   }
 
-  @Post('singup')
+  @Post('/singup')
   create(@Body() singupDto: SingupDto) {
     return this.authService.singup(singupDto);
   }
 
-  @Get()
-  HelloWord() {
-    return 'hello';
+  @Post('/singout')
+  singout() {
+    return this.authService.singout();
   }
 }

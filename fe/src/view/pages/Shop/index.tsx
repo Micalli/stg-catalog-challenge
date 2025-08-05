@@ -63,7 +63,8 @@ export function Shop() {
       >
         <div className="mb-2">
           <div className="font-bold ">
-            <span className="font-light">Olá,</span> {user?.name.toUpperCase()}
+            <span className="font-light">Olá,</span>{" "}
+            {user?.name && user?.name.toUpperCase()}
           </div>
           <p className="text-gray-600 font-light">{user?.email}</p>
         </div>
