@@ -1,8 +1,8 @@
-import { Cart } from '../../entities/Cart';
+import { CartEntity } from "../../entities/Cart";
 import { httpClient } from "../httpClient";
 
 export async function getByUserId() {
-  const { data } = await httpClient.get<Cart[]>(`/cart-items`);
+  const { data } = await httpClient.get<CartEntity[]>(`/cart-items`);
 
   return data;
 }

@@ -34,3 +34,11 @@ model CartItem {
 
   product Product @relation(fields: [productId], references: [id])
 }
+
+model ShoppingHistory {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  products   Json // [{ productId, name, price, quantity }]
+  totalPrice Decimal  @map("total_price")
+  createdAt  DateTime @default(now()) @map("created_at")
+}

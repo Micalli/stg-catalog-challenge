@@ -28,7 +28,6 @@ export class CartItemsService {
 
   async addProduct(createCartItemDto: CreateCartItemDto) {
     const { productId, userId } = createCartItemDto;
-    console.log('123');
 
     // Verificar se o produto já existe no carrinho do usuário
     const existingCartItem = await this.cartItemsRepository.findFirst({
@@ -37,7 +36,6 @@ export class CartItemsService {
         productId,
       },
     });
-    console.log('456');
 
     if (existingCartItem) {
       // Se o produto já existe, aumentar a quantidade
@@ -92,7 +90,6 @@ export class CartItemsService {
         product: true,
       },
     });
-    console.log('🚀 ~ CartItemsService ~ findUserCart ~ data:', data);
     return data;
   }
 }

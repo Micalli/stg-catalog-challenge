@@ -43,7 +43,6 @@ export class AuthService {
         },
       },
     });
-    console.log('🚀 ~ AuthService ~ singup ~ error:', error);
 
     if (!data || error) {
       throw new BadGatewayException('Não foi possível criar o usuário.');

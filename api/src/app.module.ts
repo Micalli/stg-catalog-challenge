@@ -6,6 +6,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
 import { CartItemsModule } from './modules/cart_items/cart_items.module';
 import { ProductsModule } from './modules/products/products.module';
 import { UsersModule } from './modules/users/users.module';
+import { ShoppingHistoryModule } from './modules/shopping_history/shopping_history.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UsersModule } from './modules/users/users.module';
     CartItemsModule,
     ProductsModule,
     UsersModule,
+    ShoppingHistoryModule,
   ],
   controllers: [],
   providers: [

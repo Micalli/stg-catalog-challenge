@@ -6,6 +6,7 @@ import { useCartController } from "./useCartController";
 import { formatCurrency } from "../../../app/utils/formatCurrency";
 import { Spinner } from "../../components/Spinner";
 import { CartEntity } from '../../../app/entities/Cart';
+import { Link } from 'react-router-dom';
 
 export function Cart() {
   const {
@@ -61,7 +62,7 @@ export function Cart() {
               </h2>
 
               {productsCart.length === 0 && !isFetching && (
-                <div className="text-center py-12">
+                <div className="text-center py-3">
                   <ShoppingCart className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     Seu carrinho está vazio
@@ -69,9 +70,16 @@ export function Cart() {
                   <p className="text-gray-600 mb-6">
                     Adicione alguns produtos para começar suas compras
                   </p>
-                  <Button onClick={handleContinueShopping}>
-                    Continuar Comprando
-                  </Button>
+                  <div className="flex justify-between items-center mt-8">
+                    <Button onClick={handleContinueShopping}>
+                      Continuar Comprando
+                    </Button>
+                    <Link to="/history">
+                    <p className="text-gray-500 hover:underline hover:text-gray-700 cursor-pointer transition-all  ">
+                      Historico de compras
+                    </p>
+                    </Link>
+                  </div>
                 </div>
               )}
               {productsCart.length > 0 && !isFetching && (
@@ -218,7 +226,7 @@ export function Cart() {
 
               <a href={linkWaMe} target="_blank">
                 <Button
-                  onClick={handleCheckout}
+                  onClick={() => handleCheckout(productsCart)}
                   disabled={productsCart.length === 0}
                   className="w-full"
                 >

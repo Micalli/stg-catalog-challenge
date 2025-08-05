@@ -6,12 +6,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { UpdadeQuantityParams } from "../../../app/service/cartService/updateQuantity";
 import { formatOrderMessage } from "../../../app/utils/formatOrderMessage";
+import { shoppingHistoryService } from "../../../app/service/shopping_history";
+import { CreateHistoryParams } from "../../../app/service/shopping_history/create";
+import { CartEntity } from '../../../app/entities/Cart';
+import { transformToPurchaseHistory } from '../../../app/utils/transformToPurchaseHistorty';
 
 export function useCartController() {
   const queryClient = useQueryClient();
   const { user } = useAuth();
   const { isFetching, productsCart } = useCart();
-  
 
   const shopping = useMemo(() => {
     const total = productsCart.reduce((acc, item) => {
@@ -46,10 +49,20 @@ export function useCartController() {
         return cartService.updadeQuantity(data);
       },
     });
-  const handleCheckout = async () => {
-    await resetCart();
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
 
+  const { mutateAsync: updateHistory } = useMutation({
+    mutationFn: async (data: CreateHistoryParams) => {
+      return shoppingHistoryService.create(data);
+    },
+  });
+  const handleCheckout = async (products: CartEntity[]) => {
+    console.log(
+      "🚀 ~ handleCheckout ~ products:",
+    );
+    const rawProducts: CreateHistoryParams = await transformToPurchaseHistory(products)
+    await resetCart();
+    queryClient.invalidateQueries({ queryKey: ["cart"] });
+    await updateHistory(rawProducts)
   };
 
   const handleRemoveItem = async (cartItemId: string) => {

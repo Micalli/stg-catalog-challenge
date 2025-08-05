@@ -5,10 +5,11 @@ import { Register } from "../view/pages/Register";
 import { Shop } from "../view/pages/Shop";
 import { Cart } from "../view/pages/Cart";
 import { ProductDetails } from "../view/pages/ProductDetails";
+import { History } from '../view/pages/History';
 
 export function Router() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         <Route element={<AuthGuard isPrivate={false} />}>
           <Route path="/login" element={<Login />} />
@@ -17,9 +18,10 @@ export function Router() {
         <Route element={<AuthGuard isPrivate />}>
           <Route path="/" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/product/:productId" element={<ProductDetails />}/>
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/history" element={<History />} />
         </Route>
       </Routes>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
