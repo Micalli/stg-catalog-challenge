@@ -16,6 +16,9 @@ export class ProductsRepository {
   findMany(findManyDto: Prisma.ProductFindManyArgs) {
     return this.prismaService.product.findMany(findManyDto);
   }
+  count(countDto: Prisma.ProductCountArgs) {
+    return this.prismaService.product.count(countDto);
+  }
 
   findFirst(findFirstDto: Prisma.ProductFindFirstArgs) {
     return this.prismaService.product.findFirst(findFirstDto);

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductsRepository } from 'src/shared/database/repositories/products.repository';
+import { Decimal } from 'generated/prisma/runtime/library';
 
 @Injectable()
 export class ProductsService {
@@ -11,115 +12,230 @@ export class ProductsService {
     return await this.productsRepository.createMany({
       data: [
         {
-          name: 'Camiseta Oversized Preta',
-          description:
-            'Camiseta confortável de algodão, ideal para o dia a dia.',
-          category: 'Roupas',
-          imageUrl:
-            'https://static.zattini.com.br/produtos/camiseta-oversized-preta/06/D61-0627-006/D61-0627-006_zoom1.jpg',
-          price: 59.9,
-        },
-        {
-          name: 'Tênis Nike Revolution',
-          description: 'Tênis leve e resistente para corridas e caminhadas.',
+          name: 'Tênis Adidas Run Falcon',
+          description: 'Tênis confortável para treinos e uso casual.',
           category: 'Calçados',
           imageUrl:
-            'https://static.nike.com/a/images/t_default/189d824e-9026-4d2b-ae26-2f0a4ed50f35/revolution-6-next-nature-road-running-shoes-KlpRLC.png',
-          price: 279.9,
+            'https://assets.adidas.com/images/w_600,f_auto,q_auto/7c5e1f0b49c24ff5b44ead45016fcd2a_9366/Tenis_Adidas_Run_Falcon_2.0_Preto_FW5159_01_standard.jpg',
+          price: 259.9,
         },
         {
-          name: 'Relógio Casio Vintage',
-          description: 'Relógio digital clássico com alarme e iluminação.',
-          category: 'Acessórios',
-          imageUrl:
-            'https://m.media-amazon.com/images/I/71+O-j0GJLL._AC_UX679_.jpg',
-          price: 169.0,
-        },
-        {
-          name: 'Calça Jogger Moletom',
-          description: 'Calça jogger unissex, ideal para momentos casuais.',
+          name: 'Camisa Polo Masculina',
+          description:
+            'Camisa polo clássica de algodão, elegante e confortável.',
           category: 'Roupas',
           imageUrl:
-            'https://static.zattini.com.br/produtos/calca-jogger-moletom/08/D63-0054-008/D63-0054-008_zoom1.jpg',
-          price: 89.9,
+            'https://static.zattini.com.br/produtos/camisa-polo-masculina/02/D65-0015-002/D65-0015-002_zoom1.jpg',
+          price: 79.9,
         },
         {
-          name: 'Mochila Adidas Classic',
-          description: 'Mochila resistente com compartimento para notebook.',
-          category: 'Acessórios',
+          name: 'Calça Jeans Slim Fit',
+          description: 'Calça jeans com corte moderno e confortável.',
+          category: 'Roupas',
           imageUrl:
-            'https://assets.adidas.com/images/w_600,f_auto,q_auto/0eb00c62d39e4d658310af8e015a96ce_9366/Mochila_Adidas_Classic_Preto_EX6926_01_standard.jpg',
-          price: 139.9,
+            'https://static.zattini.com.br/produtos/calca-jeans-slim-fit/24/D64-0380-024/D64-0380-024_zoom1.jpg',
+          price: 119.9,
         },
         {
-          name: 'Fone de Ouvido JBL Tune 510BT',
-          description:
-            'Fone sem fio com bateria de longa duração e graves potentes.',
+          name: 'Sandália Feminina Rasteira',
+          description: 'Sandália leve e estilosa para dias quentes.',
+          category: 'Calçados',
+          imageUrl:
+            'https://static.dafiti.com.br/p/Moleca-Sandália-Moleca-Rasteira-Feminina-Dourada-1547-5116011-1-zoom.jpg',
+          price: 69.9,
+        },
+        {
+          name: 'Headset Gamer Redragon',
+          description: 'Headset com som surround e microfone ajustável.',
           category: 'Eletrônicos',
           imageUrl:
-            'https://m.media-amazon.com/images/I/71g+6GzQWqL._AC_SL1500_.jpg',
-          price: 219.0,
+            'https://m.media-amazon.com/images/I/71woCuWHHBL._AC_SL1500_.jpg',
+          price: 199.9,
         },
         {
-          name: 'Smartwatch Amazfit Bip U',
-          description: 'Relógio inteligente com monitoramento de saúde e GPS.',
+          name: 'Notebook Lenovo IdeaPad 3',
+          description: 'Notebook leve e potente para uso diário.',
           category: 'Eletrônicos',
           imageUrl:
-            'https://m.media-amazon.com/images/I/61PFX9OsQ8L._AC_SL1500_.jpg',
-          price: 349.0,
+            'https://m.media-amazon.com/images/I/71Nbi5SOf6L._AC_SL1500_.jpg',
+          price: 2999.0,
         },
         {
-          name: 'Vestido Floral Curto',
-          description: 'Vestido leve com estampa floral, ideal para o verão.',
-          category: 'Roupas',
-          imageUrl:
-            'https://static.dafiti.com.br/p/Violeta-by-Mango-Vestido-Violeta-by-Mango-Curto-Floral-Preto-7464-9012411-1-zoom.jpg',
-          price: 129.9,
-        },
-        {
-          name: 'Boné Nike Aba Curva',
+          name: 'Camiseta Básica Branca',
           description:
-            'Boné clássico com logo bordado, ideal para esportes e casual.',
-          category: 'Acessórios',
-          imageUrl:
-            'https://static.nike.com/a/images/t_default/26f94b53-58cf-45de-8f69-8cd6bc5d715e/heritage86-futura-washed-hat-JSVt11.png',
-          price: 99.9,
-        },
-        {
-          name: 'Bolsa Feminina Tiracolo',
-          description: 'Bolsa compacta e elegante para ocasiões especiais.',
-          category: 'Acessórios',
-          imageUrl:
-            'https://static.dafiti.com.br/p/Colcci-Bolsa-Colcci-Tiracolo-Canoa-Preta-2583-9485206-1-zoom.jpg',
-          price: 159.0,
-        },
-        {
-          name: 'Jaqueta Corta Vento Unissex',
-          description: 'Jaqueta leve e resistente à água com capuz embutido.',
+            'Camiseta básica de algodão, essencial para o dia a dia.',
           category: 'Roupas',
           imageUrl:
-            'https://static.nike.com/a/images/t_default/76827bd0-c367-474f-a262-7fa30242a097/sportswear-windrunner-mens-hooded-windbreaker-jacket-q4g5xF.png',
+            'https://static.zattini.com.br/produtos/camiseta-basica-branca/14/D63-0610-014/D63-0610-014_zoom1.jpg',
+          price: 39.9,
+        },
+        {
+          name: 'Tênis Puma Smash V2',
+          description: 'Tênis casual com design moderno e confortável.',
+          category: 'Calçados',
+          imageUrl:
+            'https://static.puma.com.br/produtos/tenis-puma-smash-v2/30/D65-2757-030/D65-2757-030_zoom1.jpg',
+          price: 229.9,
+        },
+        {
+          name: 'Fone de Ouvido Bluetooth Sony',
+          description:
+            'Fone sem fio com cancelamento de ruído e som de alta qualidade.',
+          category: 'Eletrônicos',
+          imageUrl:
+            'https://m.media-amazon.com/images/I/71f5Eu5lJQL._AC_SL1500_.jpg',
+          price: 499.0,
+        },
+        {
+          name: 'Bolsa Tote Grande',
+          description: 'Bolsa espaçosa e elegante para uso diário.',
+          category: 'Acessórios',
+          imageUrl:
+            'https://static.dafiti.com.br/p/Michael-Kors-Bolsa-Michael-Kors-Tote-Preta-9176-7267246-1-zoom.jpg',
           price: 249.9,
         },
         {
-          name: 'Óculos de Sol Ray-Ban',
-          description: 'Óculos de sol com proteção UV400 e design clássico.',
+          name: 'Jaqueta Jeans Oversized',
+          description: 'Jaqueta jeans estilosa com modelagem ampla.',
+          category: 'Roupas',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/jaqueta-jeans-oversized/18/D63-0314-018/D63-0314-018_zoom1.jpg',
+          price: 219.9,
+        },
+        {
+          name: 'Carteira Couro Masculina',
+          description: 'Carteira compacta de couro legítimo com divisórias.',
           category: 'Acessórios',
           imageUrl:
-            'https://m.media-amazon.com/images/I/51k5S57idUL._AC_SL1500_.jpg',
-          price: 399.0,
+            'https://static.dafiti.com.br/p/Chenson-Carteira-Chenson-Masculina-Preta-4414-9875741-1-zoom.jpg',
+          price: 89.9,
+        },
+        {
+          name: 'Tênis Converse All Star',
+          description: 'Tênis clássico e versátil para todas as ocasiões.',
+          category: 'Calçados',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/converse-all-star-cano-baixo/34/D26-5111-034/D26-5111-034_zoom1.jpg',
+          price: 199.9,
+        },
+        {
+          name: 'Vestido Midi Listrado',
+          description: 'Vestido midi casual com estampa listrada.',
+          category: 'Roupas',
+          imageUrl:
+            'https://static.dafiti.com.br/p/Linza-Vestido-Linza-Midi-Listrado-Colorido-1964-2017411-1-zoom.jpg',
+          price: 149.9,
+        },
+        {
+          name: 'Chinelo Havaianas Top',
+          description: 'Chinelo clássico confortável e durável.',
+          category: 'Calçados',
+          imageUrl:
+            'https://m.media-amazon.com/images/I/51kzYXN0t8L._AC_UL1500_.jpg',
+          price: 29.9,
+        },
+        {
+          name: 'Smartphone Samsung Galaxy A14',
+          description:
+            'Celular com ótima performance e câmera de alta resolução.',
+          category: 'Eletrônicos',
+          imageUrl:
+            'https://m.media-amazon.com/images/I/81JeLQ0dGZL._AC_SL1500_.jpg',
+          price: 1299.0,
+        },
+        {
+          name: 'Boné Trucker Preto',
+          description: 'Boné trucker ajustável para estilo casual.',
+          category: 'Acessórios',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/bone-trucker-preto/20/D65-0378-020/D65-0378-020_zoom1.jpg',
+          price: 79.9,
+        },
+        {
+          name: 'Pulseira Masculina Couro',
+          description: 'Pulseira de couro ajustável com fecho metálico.',
+          category: 'Acessórios',
+          imageUrl:
+            'https://static.dafiti.com.br/p/Masculine-Pulseira-Masculine-Couro-Marrom-0153-4628845-1-zoom.jpg',
+          price: 59.9,
+        },
+        {
+          name: 'Tênis Vans Old Skool',
+          description: 'Tênis casual com design clássico e versátil.',
+          category: 'Calçados',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/tenis-vans-old-skool/34/D26-4311-034/D26-4311-034_zoom1.jpg',
+          price: 299.9,
+        },
+        {
+          name: 'Cropped Feminino Branco',
+          description: 'Cropped básico e confortável para looks casuais.',
+          category: 'Roupas',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/cropped-feminino-branco/18/D63-0613-018/D63-0613-018_zoom1.jpg',
+          price: 49.9,
+        },
+        {
+          name: 'Relógio Fossil Chronograph',
+          description: 'Relógio elegante com cronógrafo e pulseira de couro.',
+          category: 'Acessórios',
+          imageUrl:
+            'https://m.media-amazon.com/images/I/81oOrFVF7EL._AC_SL1500_.jpg',
+          price: 699.0,
+        },
+        {
+          name: 'Smart TV LG 50" 4K',
+          description: 'Televisão 4K com sistema webOS e controle por voz.',
+          category: 'Eletrônicos',
+          imageUrl:
+            'https://m.media-amazon.com/images/I/81XQ9z79utL._AC_SL1500_.jpg',
+          price: 2499.0,
+        },
+        {
+          name: 'Tênis Asics Gel-Nimbus',
+          description: 'Tênis de corrida com excelente amortecimento.',
+          category: 'Calçados',
+          imageUrl:
+            'https://static.asics.com.br/produtos/tenis-asics-gel-nimbus/40/D65-1327-040/D65-1327-040_zoom1.jpg',
+          price: 599.9,
+        },
+        {
+          name: 'Saia Midi Plissada',
+          description: 'Saia elegante com modelagem midi plissada.',
+          category: 'Roupas',
+          imageUrl:
+            'https://static.zattini.com.br/produtos/saia-midi-plissada/22/D63-0619-022/D63-0619-022_zoom1.jpg',
+          price: 109.9,
         },
       ],
     });
   }
-  async findMany() {
-    return await this.productsRepository.findMany({});
+  async findMany(category?: string) {
+    const products = await this.productsRepository.findMany({
+      where: {
+        category,
+      },
+    });
+    const maxProductPrice = Math.max(
+      ...products.map((p) => Number(p.price)),
+      1000,
+    );
+
+    return { products, maxProductPrice };
   }
 
   async findByCategory(category: string) {
     return await this.productsRepository.findMany({
       where: {
         category,
+      },
+    });
+  }
+
+  async findById(id: string) {
+    return await this.productsRepository.findFirst({
+      where: {
+        id,
       },
     });
   }

@@ -47,6 +47,7 @@ export class AuthService {
     if (!data || error) {
       throw new BadGatewayException('Não foi possível criar o usuário.');
     }
+    console.log('🚀 ~ AuthService ~ singup ~ data:', data);
 
     const accessToken = await this.generateAccessToken(
       data.user.id,

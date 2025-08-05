@@ -1,67 +1,63 @@
-import { useState } from 'react';
-import { Button } from './Button';
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Button } from "./Button";
+import { ShoppingCart } from "lucide-react";
+import { motion } from "framer-motion";
+import { Product } from "../../app/entities/Product";
+import { formatCurrency } from "../../app/utils/formatCurrency";
 
 interface ProductCardProps {
-  product: {
-    id: number;
-    name: string;
-    price: number;
-    image: string;
-    rating: number;
-    reviews: number;
-  };
-  onAddToCart: (productId: number) => void;
+  product: Product;
+  onLoadingButton: boolean;
+  onAddToCart: (productId: string) => void;
 }
 
-export function ProductCard({ product, onAddToCart }: ProductCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+export function ProductCard({
+  product,
+  onAddToCart,
+  onLoadingButton,
+}: ProductCardProps) {
+
 
   return (
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-      <div className="relative">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 200 }}
+      className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
+    >
+      <div onClick={() => window.location.href = `/product/${product.id}`} className='cursor-pointer'>
         <img
-          src={product.image}
+          src={product.imageUrl}
           alt={product.name}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-all duration-300"
+          className="w-full h-70 object-cover group-hover:scale-90 transition-all duration-300"
         />
-        <Button
-          onClick={() => setIsFavorite(!isFavorite)}
-          className="absolute top-3 right-3 px-2 h-9 bg-white rounded-full shadow-md  hover:bg-red-50 transition-colors"
-        >
-          <Heart
-            className={`w-5 h-5 ${
-              isFavorite ? "text-red-500 fill-current" : "text-gray-400"
-            }`}
-          />
-        </Button>
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+        <h3 className="font-semibold text-gray-900 mb-2 px-4 py-4 pb-0 hover:underline ">
           {product.name}
         </h3>
+      </div>
 
-        <div className="flex items-center mb-2">
-          <div className="flex items-center">
-            <span className="ml-1 text-sm text-gray-600">Descriptoion...</span>
-          </div>
-        </div>
+      <div className="px-4 py-4 pt-0">
+        <p className="text-gray-600 text-sm mb-6">{product.description}</p>
 
         <div className="flex items-center justify-between">
-          <span className=" font-semibold lg:text-xl  text-gray-900">
-            R$ {product.price.toFixed(2).replace(".", ",")}
+          <span className="font-semibold lg:text-xl text-gray-900">
+            {formatCurrency(product.price)}
           </span>
 
-          <Button
-            onClick={() => onAddToCart(product.id)}
-            className=" text-white px-2 py-1 xl:px-4 xl:py-2 transition-all duration-200 hover:scale-105 flex items-center gap-2"
+          <motion.div
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            <ShoppingCart className="w-4 h-4" />
-            Adicionar
-          </Button>
+            <Button
+              onClick={() => onAddToCart(product.id)}
+              className="text-white px-2 py-1 xl:px-4 xl:py-2 flex items-center gap-2 w-[125px]"
+              isLoading={onLoadingButton}
+            >
+              <ShoppingCart className="w-4 h-4" />
+              Adicionar
+            </Button>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

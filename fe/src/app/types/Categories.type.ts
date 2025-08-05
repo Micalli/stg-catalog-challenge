@@ -1,0 +1,1 @@
+export type Categories = "Roupas" | "Acessórios" | "Eletrônicos" | "Calçados";

@@ -25,4 +25,8 @@ export class CartItemsRepository {
   delete(deleteDto: Prisma.CartItemDeleteArgs) {
     return this.prismaService.cartItem.delete(deleteDto);
   }
+
+  deleteMany(deleteManyDto: Prisma.CartItemDeleteManyArgs) {
+    return this.prismaService.cartItem.deleteMany(deleteManyDto);
+  }
 }
