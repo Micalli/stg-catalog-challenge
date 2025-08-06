@@ -12,14 +12,14 @@ export function History() {
    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-blue-100">
      <Header />
 
-     <div className="max-w-4xl mx-auto px-4 py-8">
+     <div className="max-w-4xl mx-auto px-4 py-8 ">
        <motion.div
          initial={{ opacity: 0, y: -10 }}
          animate={{ opacity: 1, y: 0 }}
          transition={{ duration: 0.4 }}
          className="mb-8"
        >
-         <h1 className="text-3xl font-bold text-gray-900 mb-2">
+         <h1 className="text-3xl font-bold text-gray-900 mb-2 mt-12">
            Histórico de Compras
          </h1>
          <p className="text-gray-600">

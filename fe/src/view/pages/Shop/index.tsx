@@ -56,12 +56,12 @@ export function Shop() {
 
       {/* Main Content */}
       <motion.main
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 "
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        <div className="mb-2">
+        <div className="mb-2 mt-12">
           <div className="font-bold ">
             <span className="font-light">Olá,</span>{" "}
             {user?.name && user?.name.toUpperCase()}

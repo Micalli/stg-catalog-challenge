@@ -8,11 +8,8 @@ import { AddParams } from "../../../app/service/cartService/add";
 
 export function useProductDetailsController() {
   const { productId } = useParams();
-  const { product, isFetching, error } = useProductById(productId || "");
+  const { product, isFetching } = useProductById(productId || "");
   const { user } = useAuth();
-
-
-  
 
   const { mutateAsync, isPending: isLoadingAddToCart } = useMutation({
     mutationFn: async (data: AddParams) => {
@@ -31,12 +28,11 @@ export function useProductDetailsController() {
     }
   }
 
-  return { 
-    productId, 
-    product, 
-    isFetching, 
-    error, 
-    handleAddToCart, 
-    isLoadingAddToCart 
+  return {
+    productId,
+    product,
+    isFetching,
+    handleAddToCart,
+    isLoadingAddToCart,
   };
 }
