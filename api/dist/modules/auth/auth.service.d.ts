@@ -13,5 +13,5 @@ export declare class AuthService {
     singout(): Promise<{
         error: import("@supabase/auth-js").AuthError | null;
     }>;
-    private generateAccessToken;
+    p: any;
 }

@@ -1,5 +1,5 @@
 export declare class UsersService {
-    me(): Promise<{
+    me(req: Request): Promise<{
         user: import("@supabase/auth-js").User;
     }>;
 }

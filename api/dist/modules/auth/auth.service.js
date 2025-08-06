@@ -26,8 +26,7 @@ let AuthService = class AuthService {
         if (!data || error) {
             throw new common_1.ForbiddenException('Credenciais inválida.');
         }
-        const accessToken = await this.generateAccessToken(data.user.id, data.user.email);
-        return { accessToken };
+        return { accessToken: data.session.access_token };
     }
     async singup(singupDto) {
         const { email, name, password } = singupDto;
@@ -43,14 +42,10 @@ let AuthService = class AuthService {
         if (!data || error) {
             throw new common_1.BadGatewayException('Não foi possível criar o usuário.');
         }
-        const accessToken = await this.generateAccessToken(data.user.id, data.user.email);
-        return { accessToken };
+        return { accessToken: data.session.access_token };
     }
     async singout() {
         return await supabase_1.supabase.auth.signOut();
-    }
-    async generateAccessToken(userId, email) {
-        return await this.jwtService.signAsync({ sub: userId, email });
     }
 };
 exports.AuthService = AuthService;

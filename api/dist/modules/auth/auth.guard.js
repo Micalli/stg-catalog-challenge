@@ -13,32 +13,29 @@ exports.AuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const isPublic_1 = require("../../shared/decorators/isPublic");
-const jwt = require("jsonwebtoken");
+const supabase_1 = require("../../shared/database/supabase");
 let AuthGuard = class AuthGuard {
     constructor(reflector) {
         this.reflector = reflector;
     }
     async canActivate(context) {
+        const request = context.switchToHttp().getRequest();
+        const authHeader = request.headers.authorization;
         const isPublic = this.reflector.getAllAndOverride(isPublic_1.IS_PUBLIC_KEY, [
             context.getClass(),
             context.getHandler(),
         ]);
         if (isPublic)
             return true;
-        const request = context.switchToHttp().getRequest();
-        const token = this.extractTokenFromHeader(request);
-        if (!token)
-            throw new common_1.UnauthorizedException('Token não encontrado.');
+        const token = authHeader.split(' ')[1];
         try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET, {
-                algorithms: ['HS256'],
-            });
-            request['userId'] = decoded.sub;
+            const user = await (0, supabase_1.validateSupabaseToken)(token);
+            request.user = user;
             return true;
         }
-        catch (err) {
-            console.error('Erro ao verificar token:', err);
-            throw new common_1.UnauthorizedException('Token inválido.');
+        catch (error) {
+            console.log('aqq', error);
+            throw new common_1.UnauthorizedException();
         }
     }
     extractTokenFromHeader(request) {

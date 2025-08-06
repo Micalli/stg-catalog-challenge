@@ -89,9 +89,9 @@ export function Cart() {
                     Adicione alguns produtos para começar suas compras
                   </p>
                   <div className="flex justify-between items-center mt-8">
-                    <Button onClick={handleContinueShopping}>
-                      Continuar Comprando
-                    </Button>
+                    <Link to="/">
+                      <Button>Continuar Comprando</Button>
+                    </Link>
                   </div>
                 </div>
               )}
@@ -237,7 +237,6 @@ export function Cart() {
                 </div>
               </div>
 
-              {/* <a href={linkWaMe} target="_blank"> */}
               <Button
                 onClick={() => handleConfirmationOrder()}
                 disabled={productsCart.length === 0}
@@ -245,16 +244,17 @@ export function Cart() {
               >
                 Finalizar Compra
               </Button>
-              {/* </a> */}
 
               <div className="mt-4 text-center">
-                <Button
-                  onClick={handleContinueShopping}
-                  variant="ghost"
-                  className="w-full"
-                >
-                  Continuar Comprando
-                </Button>
+                <Link to="/">
+                  <Button
+                    // onClick={handleContinueShopping}
+                    variant="ghost"
+                    className="w-full"
+                  >
+                    Continuar Comprando
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

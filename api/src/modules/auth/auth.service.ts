@@ -24,12 +24,7 @@ export class AuthService {
       throw new ForbiddenException('Credenciais inválida.');
     }
 
-    const accessToken = await this.generateAccessToken(
-      data.user.id,
-      data.user.email,
-    );
-
-    return { accessToken };
+    return { accessToken: data.session.access_token };
   }
 
   async singup(singupDto: SingupDto) {
@@ -48,19 +43,12 @@ export class AuthService {
       throw new BadGatewayException('Não foi possível criar o usuário.');
     }
 
-    const accessToken = await this.generateAccessToken(
-      data.user.id,
-      data.user.email,
-    );
-
-    return { accessToken };
+    return { accessToken: data.session.access_token };
   }
 
   async singout() {
     return await supabase.auth.signOut();
   }
 
-  private async generateAccessToken(userId: string, email: string) {
-    return await this.jwtService.signAsync({ sub: userId, email });
-  }
+  p;
 }

@@ -10,8 +10,10 @@ exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
 const supabase_1 = require("../../shared/database/supabase");
 let UsersService = class UsersService {
-    async me() {
-        const { data, error } = await supabase_1.supabase.auth.getUser();
+    async me(req) {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader.split(' ')[1];
+        const { data, error } = await supabase_1.supabase.auth.getUser(token);
         if (error) {
             console.error('Erro ao buscar usuário:', error.message);
             return null;

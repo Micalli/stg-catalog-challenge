@@ -213,8 +213,6 @@ let ProductsService = class ProductsService {
                     where,
                 }),
             ]);
-            console.log('🚀 ~ ProductsService ~ findMany ~ total:', total);
-            console.log('🚀 ~ ProductsService ~ findMany ~ items:', items);
             const maxProductPrice = Math.max(...items.map((p) => Number(p.price)), 1000);
             return {
                 products: items,
