@@ -25,7 +25,7 @@ export function ConfirmOrderModal({
       onClose={closeConfirmationOrderModal}
     >
       <div className="space-y-4">
-        <p className="text-base text-gray-800">
+        <p className=" text-gray-800 sm:text-base text-sm ">
           Tem certeza que deseja enviar este pedido para o WhatsApp?
         </p>
 

@@ -40,7 +40,9 @@ export function Modal({
             >
               <X className="w-6 h-6" />
             </button>
-            <span className="text-lg tracking-[-1px] font-bold">{title}</span>
+            <span className="sm:text-lg text-base tracking-[-1px] font-bold">
+              {title}
+            </span>
 
             <div className="h-12 w-12 flex items-center justify-center">
               {rightAction}
