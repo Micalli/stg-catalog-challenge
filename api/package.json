@@ -6,8 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/main.js",
+    "postinstall": "prisma generate",
+    "generate": "npx prisma generate",
+    "build": "npm run generate && nest build",
+    "start": "nest start",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start:dev": "tsc --watch",
     "start:debug": "tsc --debug --watch",
