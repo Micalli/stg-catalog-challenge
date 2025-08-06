@@ -23,7 +23,7 @@ ${productsCart
 TOTAL: R$ ${formatCurrency(total)}
 `;
 
-  const linkWaMe = `https://wa.me/+5511992283695?text=${encodeURIComponent(
+  const linkWaMe = `https://wa.me/+5511969553410?text=${encodeURIComponent(
     mensagem
   )}`;
 
