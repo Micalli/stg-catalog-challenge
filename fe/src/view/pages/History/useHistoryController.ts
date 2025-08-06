@@ -2,7 +2,7 @@ import { useShoppingHistory } from '../../../app/contexts/hooks/useShoppingHisto
 
 export function useHistoryController() {
 
-  const { history, isLoading, error, refetch } = useShoppingHistory();
+  const { history, isLoading } = useShoppingHistory();
 
-  return { history, isLoading, error, refetch };
+  return { history, isLoading };
 }
