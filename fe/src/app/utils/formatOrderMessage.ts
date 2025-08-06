@@ -1,8 +1,12 @@
-import { Cart } from "../entities/Cart";
+import { CartEntity } from "../entities/Cart";
 import { User } from '../entities/User';
 import { formatCurrency } from './formatCurrency';
 
-export function formatOrderMessage(productsCart: Cart[], total: number, user?: User) {
+export function formatOrderMessage(
+  productsCart: CartEntity[],
+  total: number,
+  user?: User
+) {
   const mensagem = `
 NOVO PEDIDO - STG CATALOG 
 Cliente: ${user?.name} 
@@ -23,5 +27,5 @@ TOTAL: R$ ${formatCurrency(total)}
     mensagem
   )}`;
 
-  return linkWaMe
+  return linkWaMe;
 }

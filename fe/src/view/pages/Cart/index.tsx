@@ -5,8 +5,9 @@ import { Input } from "../../components/Input";
 import { useCartController } from "./useCartController";
 import { formatCurrency } from "../../../app/utils/formatCurrency";
 import { Spinner } from "../../components/Spinner";
-import { CartEntity } from '../../../app/entities/Cart';
-import { Link } from 'react-router-dom';
+import { CartEntity } from "../../../app/entities/Cart";
+import { Link } from "react-router-dom";
+import { ConfirmOrderModal } from "../../modals/ConfirmOrderModal";
 
 export function Cart() {
   const {
@@ -20,11 +21,20 @@ export function Cart() {
     isLoadingQuantity,
     isLoadingDelete,
     handleCheckout,
+    handleConfirmationOrder,
+    messageOrder,
   } = useCartController();
-  const [couponCode, setCouponCode] = useState("");
 
+  const [couponCode, setCouponCode] = useState("");
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-blue-100">
+      <ConfirmOrderModal
+        onConfirm={() => handleCheckout(productsCart)}
+        orderMessage={messageOrder}
+        linkWaMe={linkWaMe}
+        productsCart={productsCart}
+      />
+
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,6 +43,7 @@ export function Cart() {
               <button
                 onClick={handleContinueShopping}
                 className="mr-4 p-2 text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                title="Voltar"
               >
                 <ArrowLeft className="w-5 h-5" />
               </button>
@@ -57,9 +68,16 @@ export function Cart() {
           {/* Lista de Itens */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Seus Itens ({productsCart.length})
-              </h2>
+              <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Seus Itens ({productsCart.length})
+                </h2>
+                <Link to="/history">
+                  <p className="text-gray-500 hover:underline hover:text-gray-700 cursor-pointer transition-all   ">
+                    Historico de compras
+                  </p>
+                </Link>
+              </div>
 
               {productsCart.length === 0 && !isFetching && (
                 <div className="text-center py-3">
@@ -74,11 +92,6 @@ export function Cart() {
                     <Button onClick={handleContinueShopping}>
                       Continuar Comprando
                     </Button>
-                    <Link to="/history">
-                    <p className="text-gray-500 hover:underline hover:text-gray-700 cursor-pointer transition-all  ">
-                      Historico de compras
-                    </p>
-                    </Link>
                   </div>
                 </div>
               )}
@@ -224,15 +237,15 @@ export function Cart() {
                 </div>
               </div>
 
-              <a href={linkWaMe} target="_blank">
-                <Button
-                  onClick={() => handleCheckout(productsCart)}
-                  disabled={productsCart.length === 0}
-                  className="w-full"
-                >
-                  Finalizar Compra
-                </Button>
-              </a>
+              {/* <a href={linkWaMe} target="_blank"> */}
+              <Button
+                onClick={() => handleConfirmationOrder()}
+                disabled={productsCart.length === 0}
+                className="w-full"
+              >
+                Finalizar Compra
+              </Button>
+              {/* </a> */}
 
               <div className="mt-4 text-center">
                 <Button

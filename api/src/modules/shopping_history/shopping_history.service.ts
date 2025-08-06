@@ -21,7 +21,7 @@ export class ShoppingHistoryService {
       },
     });
     console.log('🚀 ~ ShoppingHistoryService ~ create ~ data:', data);
-    return 'This action adds a new shoppingHistory';
+    return data;
   }
 
   async findByUser(userId: string) {

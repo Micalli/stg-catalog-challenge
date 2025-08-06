@@ -6,9 +6,11 @@ import { Shop } from "../view/pages/Shop";
 import { Cart } from "../view/pages/Cart";
 import { ProductDetails } from "../view/pages/ProductDetails";
 import { History } from '../view/pages/History';
+import { ShopProvider } from '../view/shopContext';
 
 export function Router() {
   return (
+       <ShopProvider>
     <BrowserRouter>
       <Routes>
         <Route element={<AuthGuard isPrivate={false} />}>
@@ -23,5 +25,6 @@ export function Router() {
         </Route>
       </Routes>
     </BrowserRouter>
+        </ShopProvider>
   );
 }

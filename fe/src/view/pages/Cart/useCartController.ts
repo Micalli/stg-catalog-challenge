@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useAuth } from "../../../app/contexts/hooks/useAuth";
 import { useCart } from "../../../app/contexts/hooks/useCart";
 import { cartService } from "../../../app/service/cartService";
@@ -8,13 +8,17 @@ import { UpdadeQuantityParams } from "../../../app/service/cartService/updateQua
 import { formatOrderMessage } from "../../../app/utils/formatOrderMessage";
 import { shoppingHistoryService } from "../../../app/service/shopping_history";
 import { CreateHistoryParams } from "../../../app/service/shopping_history/create";
-import { CartEntity } from '../../../app/entities/Cart';
-import { transformToPurchaseHistory } from '../../../app/utils/transformToPurchaseHistorty';
+import { CartEntity } from "../../../app/entities/Cart";
+import { transformToPurchaseHistory } from "../../../app/utils/transformToPurchaseHistorty";
+import { useShop } from "../../shopContext/useShop";
+import { formatCurrency } from "../../../app/utils/formatCurrency";
 
 export function useCartController() {
   const queryClient = useQueryClient();
+  const [messageOrder, setMessageOrder] = useState<string>();
   const { user } = useAuth();
   const { isFetching, productsCart } = useCart();
+  const { openConfirmationOrderModal, closeConfirmationOrderModal } = useShop();
 
   const shopping = useMemo(() => {
     const total = productsCart.reduce((acc, item) => {
@@ -55,14 +59,33 @@ export function useCartController() {
       return shoppingHistoryService.create(data);
     },
   });
+  function handleConfirmationOrder() {
+    const mensagem = `
+NOVO PEDIDO - STG CATALOG 
+Cliente: ${user?.name} 
+Email: ${user?.email} 
+PRODUTOS: 
+${productsCart
+  .map(
+    (p) =>
+      `- ${p.product.name} - Qtd: ${p.quantity} - R$ ${Number(
+        p.product.price
+      ).toFixed(2)}`
+  )
+  .join("\n")}
+TOTAL: R$ ${formatCurrency(shopping.total)}
+`;
+    setMessageOrder(mensagem);
+    openConfirmationOrderModal();
+  }
   const handleCheckout = async (products: CartEntity[]) => {
-    console.log(
-      "🚀 ~ handleCheckout ~ products:",
+    const rawProducts: CreateHistoryParams = await transformToPurchaseHistory(
+      products
     );
-    const rawProducts: CreateHistoryParams = await transformToPurchaseHistory(products)
     await resetCart();
     queryClient.invalidateQueries({ queryKey: ["cart"] });
-    await updateHistory(rawProducts)
+    await updateHistory(rawProducts);
+    closeConfirmationOrderModal();
   };
 
   const handleRemoveItem = async (cartItemId: string) => {
@@ -100,10 +123,12 @@ export function useCartController() {
     linkWaMe,
     isLoadingQuantity,
     isLoadingDelete,
+    messageOrder,
     handleContinueShopping,
     removeItem,
     handleRemoveItem,
     handleUpdateQuantity,
     handleCheckout,
+    handleConfirmationOrder,
   };
 }

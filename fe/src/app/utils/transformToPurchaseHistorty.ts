@@ -2,6 +2,7 @@ import { CartEntity } from "../entities/Cart";
 
 export async function transformToPurchaseHistory(data: CartEntity[]) {
   const products = data.map((item) => ({
+    id: item.product.id,
     name: item.product.name,
     price: Number(item.product.price),
     quantity: item.quantity,

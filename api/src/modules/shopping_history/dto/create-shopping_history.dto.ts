@@ -1,7 +1,16 @@
-import { IsArray, IsNumber, ValidateNested, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  ValidateNested,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 class ProductDto {
+  @IsString()
+  @IsUUID()
+  id: string;
   @IsString()
   name: string;
 
