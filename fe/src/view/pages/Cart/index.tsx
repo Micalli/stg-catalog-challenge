@@ -100,7 +100,7 @@ export function Cart() {
                   {productsCart.map((item: CartEntity) => (
                     <div
                       key={item.id}
-                      className="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
+                      className="flex md:flex-row flex-col items-center md:space-x-4 space-y-4 p-4 border border-gray-200 rounded-lg hover:shadow-md transition-shadow"
                     >
                       <img
                         src={item.product?.imageUrl}

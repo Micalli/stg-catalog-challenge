@@ -167,7 +167,7 @@ export function Shop() {
         )}
 
         {/* Pagination */}
-        {filteredByName.length > 0 && (
+        {filteredByName.length > 0 && !isLoading && (
           <Pagination
             page={pagination.page}
             lastPage={pagination.lastPage}
