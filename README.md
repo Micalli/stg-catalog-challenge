@@ -4,17 +4,6 @@ Um sistema completo de e-commerce desenvolvido com NestJS (backend) e React (fro
 
 A aplicação inclui autenticação segura, catálogo de produtos com busca e filtros, carrinho de compras dinâmico e um histórico de compras. Além disso, conta com uma integração prática com o WhatsApp, permitindo finalizar pedidos rapidamente com envio automático de mensagens formatadas.
 
-## 📋 Índice
-
-- [Visão Geral](#visão-geral)
-- [Arquitetura](#arquitetura)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação e Configuração](#instalação-e-configuração)
-- [Funcionalidades](#funcionalidades)
-- [API Endpoints](#api-endpoints)
-- [Inteligência Artificial](#nteligência-rtificial)
-- [Contribuição](#contribuição)
-
 ## 🎯 Visão Geral
 
 O STG Catalog Challenge é uma aplicação de e-commerce completa que demonstra as melhores práticas de desenvolvimento full-stack. O projeto inclui:
@@ -213,7 +202,7 @@ O backend está rodando em https://stg-catalog-challenge-sigma.vercel.app/
 ### Frontend (Vercel)
 O frontend está rodando em https://stg-catalog-challenge-6ldm.vercel.app/
 
-## Contato
+## Entre em contato
 Feito por [Bruno Micalli](https://github.com/micalli).
 
 [![Linkedin Badge](https://img.shields.io/badge/-Bruno_Micalli-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/brunomicalli/)](https://www.linkedin.com/in/brunomicalli/)
