@@ -18,7 +18,7 @@ A aplicação inclui autenticação segura, catálogo de produtos com busca e fi
 
 O STG Catalog Challenge é uma aplicação de e-commerce completa que demonstra as melhores práticas de desenvolvimento full-stack. O projeto inclui:
 
-- **Backend**: API RESTful construída com NestJS, Prisma ORM e PostgreSQL
+- **Backend**: API RESTful construída com NestJS, Prisma ORM
 - **Frontend**: Interface moderna desenvolvida com React, TypeScript e Tailwind CSS
 - **Banco de dados**: Supabase
 - **Autenticação**: Sistema de autenticação JWT integrado com Supabase
@@ -28,8 +28,8 @@ O STG Catalog Challenge é uma aplicação de e-commerce completa que demonstra 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- **NestJS**: Framework Node.js para construção de aplicações escaláveis
-- **Prisma**: ORM moderno para TypeScript e Node.js
+- **NestJS**: Framework Node.js para construção de aplicações escaláveis (Escolhi por ter mais praticidade e intimidade)
+- **Prisma**: ORM moderno para TypeScript e Node.js (Escolhi por ter mais praticidade e intimidade)
 - **JWT**: Autenticação baseada em tokens
 - **Supabase**: Banco de dados, autenticação e autorização
 - **bcryptjs**: Criptografia de senhas
@@ -41,49 +41,19 @@ O STG Catalog Challenge é uma aplicação de e-commerce completa que demonstra 
 - **Vite**: Build tool e dev server
 - **Tailwind CSS**: Framework CSS utilitário
 - **React Router**: Roteamento da aplicação
-- **React Query**: Gerenciamento de estado do servidor
+- **React Query**: Gerenciamento de estado do servidor (Escolhi por ter uma intimidade com a lib e praticidade de gerenciamento de estado)
 - **Framer Motion**: Animações
 - **Lucide React**: Ícones
 - **React Hook Form**: Formulários
 - **Zod**: Validação de esquemas
 
-## 🏗️ Arquitetura
+## 🤖 Inteligência Artificial
 
-### Backend (API)
-```
-api/
-├── src/
-│   ├── modules/           # Módulos da aplicação
-│   │   ├── auth/         # Autenticação e autorização
-│   │   ├── products/     # Gestão de produtos
-│   │   ├── cart_items/   # Carrinho de compras
-│   │   ├── users/        # Gestão de usuários
-│   │   └── shopping_history/ # Histórico de compras
-│   ├── shared/           # Recursos compartilhados
-│   │   ├── database/     # Configuração do banco de dados
-│   │   └── decorators/   # Decorators customizados
-│   └── main.ts          # Ponto de entrada da aplicação
-├── prisma/              # Schema e migrações do banco
-└── package.json
-```
+Durante o desenvolvimento do projeto, foram utilizadas ferramentas de Inteligência Artificial para otimização do processo:
 
-### Frontend (React)
-```
-fe/
-├── src/
-│   ├── app/             # Lógica de negócio
-│   │   ├── contexts/    # Contextos React
-│   │   ├── service/     # Serviços de API
-│   │   ├── entities/    # Entidades/Tipos
-│   │   └── utils/       # Utilitários
-│   ├── view/           # Componentes de UI
-│   │   ├── components/  # Componentes reutilizáveis
-│   │   ├── pages/       # Páginas da aplicação
-│   │   └── modals/      # Modais
-│   └── router/         # Configuração de rotas
-└── package.json
-```
+- Cursor: empregado na geração e refatoração de código, especialmente para construção do layout, criação de componentes reutilizáveis e implementação de animações com Framer Motion, acelerando a produtividade e garantindo padronização.
 
+- OpenAI: utilizada como suporte para análise e tomada de decisão técnica, fornecendo alternativas de arquitetura, boas práticas e soluções para problemas complexos e correção de bugs identificados durante o desenvolvimento.
 
 ## 🚀 Instalação e Configuração
 
@@ -104,8 +74,8 @@ npm install
 Crie um arquivo `.env` na pasta `api/`:
 ```env
 DATABASE_URL="postgresql://username:password@localhost:5432/stg_catalog"
+SUPABASE_URL="https://xxxxxxxxxxx.supabase.co"
 JWT_SECRET="your-jwt-secret"
-SUPABASE_URL="your-supabase-url"
 SUPABASE_ANON_KEY="your-supabase-anon-key"
 ```
 
@@ -136,74 +106,6 @@ Edite `src/app/config/api.ts` com a URL da sua API.
 npm run dev
 ```
 
-## ✨ Funcionalidades
-
-### 🔐 Autenticação
-- Registro de usuários
-- Login com email e senha
-- Autenticação JWT
-- Proteção de rotas
-
-### 🛍️ Catálogo de Produtos
-- Listagem de produtos
-- Filtros por categoria
-- Filtros por preço
-- Busca de produtos
-- Paginação
-
-### 🛒 Carrinho de Compras
-- Adicionar produtos ao carrinho
-- Remover produtos do carrinho
-- Atualizar quantidades
-- Visualizar carrinho
-- Finalizar compra
-
-### 📊 Histórico de Compras
-- Visualizar histórico de compras
-- Detalhes de cada compra
-- Data e valor das compras
-
-### 🎨 Interface
-- Design responsivo
-- Animações suaves
-- Loading states
-- Feedback visual
-- Modais de confirmação
-
-## 🔌 API Endpoints
-
-### Autenticação
-- `POST /auth/signup` - Registro de usuário
-- `POST /auth/signin` - Login de usuário
-
-### Produtos
-- `GET /products` - Listar produtos
-- `GET /products/:id` - Obter produto específico
-- `POST /products` - Criar produto (admin)
-- `PUT /products/:id` - Atualizar produto (admin)
-- `DELETE /products/:id` - Deletar produto (admin)
-
-### Carrinho
-- `GET /cart-items` - Obter itens do carrinho
-- `POST /cart-items` - Adicionar item ao carrinho
-- `PUT /cart-items/:id/quantity` - Atualizar quantidade
-- `DELETE /cart-items/:id` - Remover item do carrinho
-
-### Histórico de Compras
-- `GET /shopping-history` - Obter histórico de compras
-- `POST /shopping-history` - Criar nova compra
-
-### Usuários
-- `GET /users/me` - Obter dados do usuário atual
-
-## 🤖 Inteligência Artificial
-
-Durante o desenvolvimento do projeto, foram utilizadas ferramentas de Inteligência Artificial para otimização do processo:
-
-- Cursor: empregado na geração e refatoração de código, especialmente para construção do layout, criação de componentes reutilizáveis e implementação de animações com Framer Motion, acelerando a produtividade e garantindo padronização.
-
-- OpenAI: utilizada como suporte para análise e tomada de decisão técnica, fornecendo alternativas de arquitetura, boas práticas e soluções para problemas complexos e correção de bugs identificados durante o desenvolvimento.
-
 ## 🚀 Deploy
 
 ### Backend (Vercel)
@@ -211,6 +113,53 @@ O backend está rodando em https://stg-catalog-challenge-sigma.vercel.app/
 
 ### Frontend (Vercel)
 O frontend está rodando em https://stg-catalog-challenge-6ldm.vercel.app/
+
+## ✨ Funcionalidades
+
+### 🔐 Autenticação
+- Tela de login e registro
+- Autenticação via email/senha
+- Logout funcional
+- Proteção de rotas (usuários não logados não acessam o catálogo)
+- Recuperação de senha (opcional, mas será um diferencial)
+
+### 🛍️ Catálogo de Produtos
+- Listagem de produtos com imagem, nome, preço e descrição
+- Busca/filtro por nome do produto
+- Visualização detalhada do produto (modal ou página)
+- Adicionar produto ao carrinho
+- Visualizar carrinho com produtos selecionados
+- Interface responsiva (desktop e mobile)
+  
+### 📨 Finalização via WhatsApp
+- Botão "Finalizar Pedido" no carrinho
+- Gerar mensagem formatada com os produtos
+- Redirecionar para wa.me do link com pedido
+- Limpar carrinho após envio
+  
+### 🎨 Interface
+- Design responsivo
+- Animações suaves
+- Loading states
+- Feedback visual
+- Modais de confirmação
+
+## 🚀 Funcionalidades Bônus
+
+### Implementações
+- Histórico de pedidos do usuário
+- Filtros avançados (categoria, faixa de preço)
+
+### ⚒️ Técnico:
+- Context API para gerenciamento de estado global
+- Custom hooks bem estruturados
+- Performance otimizada (lazy loading, memoization)
+
+### 🎨 UX/UI
+- Animações suaves (Framer Motion)
+- Skeleton loading durante carregamentos
+- Toast notifications para feedback
+- Paginação
 
 ## Entre em contato
 Feito por [Bruno Micalli](https://github.com/micalli).
