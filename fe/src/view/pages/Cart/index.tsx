@@ -18,11 +18,11 @@ export function Cart() {
     linkWaMe,
     handleRemoveItem,
     handleUpdateQuantity,
-    isLoadingQuantity,
-    isLoadingDelete,
     handleCheckout,
     handleConfirmationOrder,
     messageOrder,
+    loadingUpdateProductCartId,
+    loadingDeleteProductCartId,
   } = useCartController();
 
   const [couponCode, setCouponCode] = useState("");
@@ -126,7 +126,7 @@ export function Cart() {
                             handleUpdateQuantity(item.id, item.quantity - 1)
                           }
                           className="w-8 h-8 p-0 flex items-center justify-center"
-                          isLoading={isLoadingQuantity}
+                          isLoading={loadingUpdateProductCartId === item.id}
                           disabled={item.quantity <= 1}
                         >
                           <Minus className="w-4 h-4" />
@@ -141,7 +141,7 @@ export function Cart() {
                             handleUpdateQuantity(item.id, item.quantity + 1)
                           }
                           className="w-8 h-8 p-0 flex items-center justify-center"
-                          isLoading={isLoadingQuantity}
+                          isLoading={loadingUpdateProductCartId === item.id}
                         >
                           <Plus className="w-4 h-4" />
                         </Button>
@@ -160,7 +160,7 @@ export function Cart() {
                         onClick={() => handleRemoveItem(item.id)}
                         variant="danger"
                         className="w-8 h-8 p-0 flex items-center justify-center"
-                        isLoading={isLoadingDelete}
+                        isLoading={loadingDeleteProductCartId === item.id}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>

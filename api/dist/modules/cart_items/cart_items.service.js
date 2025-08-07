@@ -16,26 +16,8 @@ let CartItemsService = class CartItemsService {
     constructor(cartItemsRepository) {
         this.cartItemsRepository = cartItemsRepository;
     }
-    async create(createCartItemDto) {
-        const { productId, userId } = createCartItemDto;
-        const alreadyCartExists = await this.cartItemsRepository.findFirst({
-            where: {
-                userId,
-            },
-        });
-        if (alreadyCartExists) {
-            return { cartItemId: '123' };
-        }
-        return await this.cartItemsRepository.create({
-            data: {
-                productId,
-                quantity: 1,
-                userId,
-            },
-        });
-    }
-    async addProduct(createCartItemDto) {
-        const { productId, userId } = createCartItemDto;
+    async addProduct(createCartItemDto, userId) {
+        const { productId } = createCartItemDto;
         const existingCartItem = await this.cartItemsRepository.findFirst({
             where: {
                 userId,

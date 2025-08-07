@@ -187,16 +187,21 @@ let ProductsService = class ProductsService {
         this.productsRepository = productsRepository;
     }
     async create(createProductDto) {
-        const { category, description, imageUrl, name, price } = createProductDto;
-        return await this.productsRepository.createMany({
-            data: {
-                category,
-                description,
-                imageUrl,
-                name,
-                price,
-            },
-        });
+        try {
+            const { category, description, imageUrl, name, price } = createProductDto;
+            return await this.productsRepository.createMany({
+                data: {
+                    category,
+                    description,
+                    imageUrl,
+                    name,
+                    price,
+                },
+            });
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async findMany(page, limit, category) {
         try {
@@ -225,22 +230,32 @@ let ProductsService = class ProductsService {
             };
         }
         catch (error) {
-            console.log('🚀 ~ ProductsService ~ findMany ~ error:', error);
+            throw error;
         }
     }
     async findByCategory(category) {
-        return await this.productsRepository.findMany({
-            where: {
-                category,
-            },
-        });
+        try {
+            return await this.productsRepository.findMany({
+                where: {
+                    category,
+                },
+            });
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async findById(id) {
-        return await this.productsRepository.findFirst({
-            where: {
-                id,
-            },
-        });
+        try {
+            return await this.productsRepository.findFirst({
+                where: {
+                    id,
+                },
+            });
+        }
+        catch (error) {
+            throw error;
+        }
     }
 };
 exports.ProductsService = ProductsService;

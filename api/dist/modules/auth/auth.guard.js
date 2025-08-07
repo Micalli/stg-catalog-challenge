@@ -34,7 +34,6 @@ let AuthGuard = class AuthGuard {
             return true;
         }
         catch (error) {
-            console.log('aqq', error);
             throw new common_1.UnauthorizedException();
         }
     }

@@ -20,6 +20,14 @@ export function useCartController() {
   const { isFetching, productsCart } = useCart();
   const { openConfirmationOrderModal, closeConfirmationOrderModal } = useShop();
 
+  const [loadingUpdateProductCartId, setLoadingUpdateProductCartId] = useState<
+    string | null
+  >(null);
+
+  const [loadingDeleteProductCartId, setLoadingDeleteProductCartId] = useState<
+    string | null
+  >(null);
+
   const shopping = useMemo(() => {
     const total = productsCart.reduce((acc, item) => {
       const price = Number(item.product.price) || 0;
@@ -41,13 +49,13 @@ export function useCartController() {
       return cartService.resetCart();
     },
   });
-  const { mutateAsync: removeItem, isPending: isLoadingDelete } = useMutation({
+  const { mutateAsync: removeItem } = useMutation({
     mutationFn: async (cartItemId: string) => {
       return cartService.remove(cartItemId);
     },
   });
 
-  const { mutateAsync: updateQuantity, isPending: isLoadingQuantity } =
+  const { mutateAsync: updateQuantity } =
     useMutation({
       mutationFn: async (data: UpdadeQuantityParams) => {
         return cartService.updadeQuantity(data);
@@ -90,11 +98,14 @@ TOTAL: R$ ${formatCurrency(shopping.total)}
 
   const handleRemoveItem = async (cartItemId: string) => {
     try {
+      setLoadingDeleteProductCartId(cartItemId);
       await removeItem(cartItemId);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       toast.success("Item removido do carrinho");
     } catch (error) {
       toast.error("Não foi possivel remover o item.");
+    } finally {
+      setLoadingDeleteProductCartId(null);
     }
   };
 
@@ -107,12 +118,15 @@ TOTAL: R$ ${formatCurrency(shopping.total)}
         handleRemoveItem(cartItemId);
         return;
       }
+      setLoadingUpdateProductCartId(cartItemId);
 
       await updateQuantity({ cartItemId, newQuantity });
       queryClient.invalidateQueries({ queryKey: ["cart"] });
       toast.success("Quantidade atualizada.");
     } catch (error) {
       toast.error("Não foi possivel atualizar a quantidade.");
+    } finally {
+      setLoadingUpdateProductCartId(null);
     }
   };
 
@@ -121,9 +135,9 @@ TOTAL: R$ ${formatCurrency(shopping.total)}
     isFetching,
     shopping,
     linkWaMe,
-    isLoadingQuantity,
-    isLoadingDelete,
     messageOrder,
+    loadingUpdateProductCartId,
+    loadingDeleteProductCartId,
     handleContinueShopping,
     removeItem,
     handleRemoveItem,

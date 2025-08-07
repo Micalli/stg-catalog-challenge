@@ -22,11 +22,8 @@ let CartItemsController = class CartItemsController {
     constructor(cartItemsService) {
         this.cartItemsService = cartItemsService;
     }
-    create(createCartItemDto) {
-        return this.cartItemsService.create(createCartItemDto);
-    }
-    addProduct(createCartItemDto) {
-        return this.cartItemsService.addProduct(createCartItemDto);
+    addProduct(createCartItemDto, userId) {
+        return this.cartItemsService.addProduct(createCartItemDto, userId);
     }
     updateProductQuantity(cartItemId, userId, updateQuantityCartItemDto) {
         return this.cartItemsService.updateProductQuantity(cartItemId, userId, updateQuantityCartItemDto);
@@ -43,17 +40,11 @@ let CartItemsController = class CartItemsController {
 };
 exports.CartItemsController = CartItemsController;
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_cart_item_dto_1.CreateCartItemDto]),
-    __metadata("design:returntype", void 0)
-], CartItemsController.prototype, "create", null);
-__decorate([
     (0, common_1.Post)('/add'),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, ActiveUserId_1.ActiveUserId)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_cart_item_dto_1.CreateCartItemDto]),
+    __metadata("design:paramtypes", [create_cart_item_dto_1.CreateCartItemDto, String]),
     __metadata("design:returntype", void 0)
 ], CartItemsController.prototype, "addProduct", null);
 __decorate([
