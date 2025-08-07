@@ -22,8 +22,8 @@ let CartItemsController = class CartItemsController {
     constructor(cartItemsService) {
         this.cartItemsService = cartItemsService;
     }
-    addProduct(createCartItemDto, userId) {
-        return this.cartItemsService.addProduct(createCartItemDto, userId);
+    addProduct(createCartItemDto, userId1) {
+        return this.cartItemsService.addProduct(createCartItemDto, userId1);
     }
     updateProductQuantity(cartItemId, userId, updateQuantityCartItemDto) {
         return this.cartItemsService.updateProductQuantity(cartItemId, userId, updateQuantityCartItemDto);

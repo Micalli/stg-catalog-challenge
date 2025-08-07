@@ -4,7 +4,7 @@ import { UpdateQuantityCartItemDto } from './dto/update-quantity-cart_item.dto';
 export declare class CartItemsController {
     private readonly cartItemsService;
     constructor(cartItemsService: CartItemsService);
-    addProduct(createCartItemDto: CreateCartItemDto, userId: string): Promise<{
+    addProduct(createCartItemDto: CreateCartItemDto, userId1: string): Promise<{
         id: string;
         userId: string;
         productId: string;

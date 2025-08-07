@@ -21,7 +21,7 @@ export function useProductDetailsController() {
     if (!productId || !user?.id) return;
 
     try {
-      await mutateAsync({ productId, userId: user.id });
+      await mutateAsync({ productId });
       toast.success("Produto adicionado ao carrinho!");
     } catch (error) {
       toast.error("Erro ao adicionar produto ao carrinho!");

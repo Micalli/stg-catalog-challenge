@@ -11,9 +11,9 @@ export class CartItemsController {
   @Post('/add')
   addProduct(
     @Body() createCartItemDto: CreateCartItemDto,
-    @ActiveUserId() userId: string,
+    @ActiveUserId() userId1: string,
   ) {
-    return this.cartItemsService.addProduct(createCartItemDto, userId);
+    return this.cartItemsService.addProduct(createCartItemDto, userId1);
   }
   @Post('/update/quantity/:cartItemId')
   updateProductQuantity(

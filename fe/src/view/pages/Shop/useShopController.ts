@@ -46,7 +46,7 @@ export function useShopController() {
     try {
       setLoadingProductId(productId);
 
-      await mutateAsync({ productId, userId: user?.id });
+      await mutateAsync({ productId });
 
       toast.success("Produto adicionado com sucesso!");
     } catch (error) {
