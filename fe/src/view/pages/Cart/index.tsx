@@ -232,8 +232,15 @@ export function Cart() {
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                     className="flex-1"
+                    title="Em breve"
                   />
-                  <Button className="px-4">Aplicar</Button>
+                  <Button
+                    className="px-4"
+                    disabled={!couponCode}
+                    title="Em breve"
+                  >
+                    Aplicar
+                  </Button>
                 </div>
               </div>
 
@@ -247,11 +254,7 @@ export function Cart() {
 
               <div className="mt-4 text-center">
                 <Link to="/">
-                  <Button
-                    // onClick={handleContinueShopping}
-                    variant="ghost"
-                    className="w-full"
-                  >
+                  <Button variant="ghost" className="w-full">
                     Continuar Comprando
                   </Button>
                 </Link>

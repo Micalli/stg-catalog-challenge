@@ -56,7 +56,7 @@ export function ProductDetails() {
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">
                     {product.name}
                   </h1>
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-4" title='Em breve'>
                     <div className="flex items-center">
                       {[...Array(5)].map((_, i) => (
                         <Star
