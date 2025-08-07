@@ -1,4 +1,8 @@
 # STG Catalog Challenge
+
+<div align="center">
+  <img alt="fincheck" title="portfolio" src="https://raw.githubusercontent.com/Micalli/stg-catalog-challenge/refs/heads/main/fe/public/demo.png" >
+</h1>
 <h1 align="center">
   <a href="https://stg-catalog-challenge-6ldm.vercel.app/">
     stg-challenge.vercel.app
