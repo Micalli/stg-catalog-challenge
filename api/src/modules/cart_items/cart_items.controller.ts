@@ -8,13 +8,12 @@ import { UpdateQuantityCartItemDto } from './dto/update-quantity-cart_item.dto';
 export class CartItemsController {
   constructor(private readonly cartItemsService: CartItemsService) {}
 
-  @Post()
-  create(@Body() createCartItemDto: CreateCartItemDto) {
-    return this.cartItemsService.create(createCartItemDto);
-  }
   @Post('/add')
-  addProduct(@Body() createCartItemDto: CreateCartItemDto) {
-    return this.cartItemsService.addProduct(createCartItemDto);
+  addProduct(
+    @Body() createCartItemDto: CreateCartItemDto,
+    @ActiveUserId() userId: string,
+  ) {
+    return this.cartItemsService.addProduct(createCartItemDto, userId);
   }
   @Post('/update/quantity/:cartItemId')
   updateProductQuantity(

@@ -194,17 +194,21 @@ const mockProducts = [
 export class ProductsService {
   constructor(private readonly productsRepository: ProductsRepository) {}
   async create(createProductDto: CreateProductDto) {
-    const { category, description, imageUrl, name, price } = createProductDto;
+    try {
+      const { category, description, imageUrl, name, price } = createProductDto;
 
-    return await this.productsRepository.createMany({
-      data: {
-        category,
-        description,
-        imageUrl,
-        name,
-        price,
-      },
-    });
+      return await this.productsRepository.createMany({
+        data: {
+          category,
+          description,
+          imageUrl,
+          name,
+          price,
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
   }
   async findMany(page: number, limit: number, category?: string) {
     try {
@@ -237,23 +241,31 @@ export class ProductsService {
         },
       };
     } catch (error) {
-      console.log('🚀 ~ ProductsService ~ findMany ~ error:', error);
+      throw error;
     }
   }
 
   async findByCategory(category: string) {
-    return await this.productsRepository.findMany({
-      where: {
-        category,
-      },
-    });
+    try {
+      return await this.productsRepository.findMany({
+        where: {
+          category,
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 
   async findById(id: string) {
-    return await this.productsRepository.findFirst({
-      where: {
-        id,
-      },
-    });
+    try {
+      return await this.productsRepository.findFirst({
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      throw error;
+    }
   }
 }

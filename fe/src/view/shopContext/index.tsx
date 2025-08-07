@@ -11,12 +11,10 @@ export const ShopContext = createContext({} as ShopContextValue);
 export function ShopProvider({ children }: { children: React.ReactNode }) {
   const [isConfirmationOrderModalOpen, setIsConfirmationOrderModalOpen] =
     useState(false);
-  console.log("🚀 ~ ShopProvider ~ isConfirmationOrderModalOpen:", isConfirmationOrderModalOpen)
 
   const openConfirmationOrderModal = useCallback(() => {
     setIsConfirmationOrderModalOpen(true);
   }, []);
-  console.log("🚀 ~ ShopProvider ~ openConfirmationOrderModal:")
 
   const closeConfirmationOrderModal = useCallback(() => {
     setIsConfirmationOrderModalOpen(false);

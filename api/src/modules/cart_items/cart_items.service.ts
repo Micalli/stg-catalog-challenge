@@ -6,28 +6,9 @@ import { UpdateQuantityCartItemDto } from './dto/update-quantity-cart_item.dto';
 @Injectable()
 export class CartItemsService {
   constructor(private readonly cartItemsRepository: CartItemsRepository) {}
-  async create(createCartItemDto: CreateCartItemDto) {
-    const { productId, userId } = createCartItemDto;
 
-    const alreadyCartExists = await this.cartItemsRepository.findFirst({
-      where: {
-        userId,
-      },
-    });
-    if (alreadyCartExists) {
-      return { cartItemId: '123' };
-    }
-    return await this.cartItemsRepository.create({
-      data: {
-        productId,
-        quantity: 1,
-        userId,
-      },
-    });
-  }
-
-  async addProduct(createCartItemDto: CreateCartItemDto) {
-    const { productId, userId } = createCartItemDto;
+  async addProduct(createCartItemDto: CreateCartItemDto, userId: string) {
+    const { productId } = createCartItemDto;
 
     // Verificar se o produto já existe no carrinho do usuário
     const existingCartItem = await this.cartItemsRepository.findFirst({

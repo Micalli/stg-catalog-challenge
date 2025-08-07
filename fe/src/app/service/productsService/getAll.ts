@@ -13,7 +13,6 @@ type ProductResponse = {
 };
 
 export async function getAll(category: Categories | null, page: number) {
-  console.log("🚀 ~ getAll ~ category:", category)
   const params = new URLSearchParams();
   if (category) params.append("category", category);
   params.append("page", page.toString());
