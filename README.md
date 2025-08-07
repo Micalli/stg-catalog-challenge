@@ -2,6 +2,7 @@
 
 <div align="center">
   <img alt="fincheck" title="portfolio" src="https://raw.githubusercontent.com/Micalli/stg-catalog-challenge/refs/heads/main/fe/public/demo.png" >
+</div>
 </h1>
 <h1 align="center">
   <a href="https://stg-catalog-challenge-6ldm.vercel.app/">
